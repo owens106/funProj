@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+body {
+    font-family: 'Comfortaa', cursive;
+}
+
+main{
+    display: flex;
+    justify-content: space-around
+}
+
+#userForm{
+    background-color: lightgoldenrodyellow;
+    padding: 1rem;
+    border: 10px solid #dddddd;
+}
+dl{
+    padding: 1rem;
+}
+
+label{
+    display: block
+}
+dl > li{   
+    list-style: none
+}
+
+dl:nth-of-type(even){
+    background-color: whitesmoke;
+}
