@@ -1,5 +1,6 @@
 const form = document.querySelector('#userForm')
 let master=[]
+let counter=0
 
 
 const handleSubmit = function(ev) {
@@ -9,8 +10,9 @@ const handleSubmit = function(ev) {
     input: f.input.value,
     
   }
+  
   master.push(entry)
-
+  counter++
   const users = document.querySelector('#list')
   users.appendChild(renderList(entry))
 
@@ -18,6 +20,7 @@ const handleSubmit = function(ev) {
   f.input.focus()
 }
 function renderList(data) {
+    
     const list = document.createElement('dl')
     const labels = Object.keys(data)
     labels.forEach(label => {
@@ -26,6 +29,9 @@ function renderList(data) {
     })
     return list
   }
+
+
+
   function renderListItem(label, value) {
     const item = document.createElement('li')
     const term = document.createElement('dt')
@@ -53,8 +59,18 @@ function renderList(data) {
   }
   
   const remove=function(ev){
+      console.log(ev.target.parentNode)
+      const values= (ev.target.parentNode.children)
+      keyword= (values[1].textContent)
+      for(var i=0;i<master.length;i++){
+        if(master[i]['input'] ==keyword){
+          master.splice(i,1)
+          break
+        }
+      }
+      debugger
       var dl_item=ev.target.parentNode.parentNode
-      console.log(ev.target.parentNode.parentNode.parentNode)
+      //console.log(ev.target.parentNode.parentNode.parentNode)
       dl_item.parentNode.removeChild(dl_item)
       
   }
