@@ -4,33 +4,7 @@ body {
     font-family: 'Comfortaa', cursive;
 }
 
-main{
+main {
     width: 80%;
     margin: 1rem auto;
-    display: flex;
-    justify-content: space-around
-}
-
-#userForm{
-    background-color: lightgoldenrodyellow;
-    padding: 1rem;
-    border: 10px solid #dddddd;
-}
-dl{
-    padding: 1rem;
-}
-
-label{
-    display: block
-}
-dl > li{   
-    list-style: none
-}
-div{
-    background-color: palegoldenrod
-}
-form{
-    height: 150px;
-    width: 200px;
-}
-
+  }
