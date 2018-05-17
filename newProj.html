@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>User Directory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">-->
   <link rel="stylesheet" href="newProj.css">
 </head>
 <body>
@@ -14,13 +15,19 @@
     <form id="userForm">
       <p>
         <label for="userName">Enter some text:</label>
-        <input type="text" name="input" autofocus>
+        <input 
+          type="text" 
+          name="input" 
+          autofocus 
+          required
+          placeholder="Input some value"
+        >
       </p>
   
       <button type="submit">Go</button>
     </form>
   
-    <div id="list" backgroundColor ="creme"></div>
+    <div id="list"></div>
   </main>
   
   <script src="newProj.js"></script>
