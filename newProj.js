@@ -68,7 +68,7 @@ function renderList(data) {
           break
         }
       }
-      debugger
+      
       var dl_item=ev.target.parentNode.parentNode
       //console.log(ev.target.parentNode.parentNode.parentNode)
       dl_item.parentNode.removeChild(dl_item)
