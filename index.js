@@ -3,6 +3,7 @@ const app = {
     this.max = 0
     this.list=document.querySelector(selectors.listSelector)
     this.flicks=[]
+    this.template=document.querySelector(selectors.templateSelector)
 
     document
       .querySelector(selectors.formSelector)
@@ -13,8 +14,11 @@ const app = {
   },
 
   renderListItem: function(flick){
-    const item = document.createElement('li')
-    item.textContent=flick.name
+    const item = this.template.cloneNode(true)
+    item.classList.remove('template')
+    
+    item.querySelector('.flickName')
+    .textContent=flick.name
     item.dataset.id=flick.id
     return item
   },
@@ -39,4 +43,5 @@ const app = {
 app.init({
   formSelector: '#flickForm',
   listSelector: '#flickList',
+  templateSelector: '.flick.template'
 })
