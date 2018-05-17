@@ -16,10 +16,44 @@ const app = {
   renderListItem: function(flick){
     const item = this.template.cloneNode(true)
     item.classList.remove('template')
-    
+
+    item.querySelector('.button.alert')
+      .addEventListener('click', ev =>{
+        var a=ev.target.parentElement.parentElement
+        a.parentElement.removeChild(a)
+        for(var i=0;i<app.flicks.length;i++){
+          if(app.flicks[i].id==a.dataset.id){
+            app.flicks.splice(i,1)
+          }
+        }
+        
+        
+      })
+      item.querySelector('.button.warning')
+        .addEventListener('click', ev =>{
+          var a=ev.target.parentElement.parentElement
+          
+          for(var i=0;i<app.flicks.length;i++){
+            if(app.flicks[i].id==a.dataset.id){
+              console.log(app.flicks[i].fav)
+              app.flicks[i].fav=!(app.flicks[i].fav)
+              if(app.flicks[i].fav==true){
+                (a.querySelector('.flickName').style.backgroundColor='yellow')
+              }
+              else{
+                a.querySelector('.flickName').style.backgroundColor='white'
+
+              }
+              console.log(app.flicks[i].fav)
+
+            }
+          }
+          //debugger
+        })
+
     item.querySelector('.flickName')
-    .textContent=flick.name
-    item.dataset.id=flick.id
+      .textContent=flick.name
+      item.dataset.id=flick.id
     return item
   },
 
@@ -28,6 +62,7 @@ const app = {
     const flick = {
       id: ++this.max,
       name: f.flickName.value,
+      fav: false,
     }
     this.flicks.unshift(flick)
     const item = this.renderListItem(flick)
