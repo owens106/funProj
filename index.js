@@ -26,22 +26,34 @@ class App {
     flick.fav = item.classList.toggle('fav')
   }
 
-  toggleEditable(item,flick,_ev){
+  toggleEditable(item, flick, _ev) {
     const nameField = item.querySelector('.flickName')
-    const button = item.querySelector('.edit.button')
-    if(nameField.isContentEditable){
-      //make it no longer editable
-      nameField.contentEditable=false
-      button.textContent='edit'
-      button.classList.remove('success')
-      
-    }
-    else{
-      //make editable
-      nameField.contentEditable=true
-      button.textContent='save'
-      button.classList.add('success')
+    const btn = item.querySelector('.edit.button')
+
+    if (nameField.isContentEditable) {
+      // make it no longer editable
+      nameField.contentEditable = false
+
+      // update the button
+      btn.textContent = 'edit'
+      btn.classList.remove('success')
+
+      // save changes
+      flick.name = nameField.textContent
+    } else {
+      // make it editable
+      nameField.contentEditable = true
       nameField.focus()
+
+      // update the button
+      btn.textContent = 'save'
+      btn.classList.add('success')
+    }
+  }
+
+  saveOnEnter(item, flick, ev) {
+    if (ev.key === 'Enter') {
+      this.toggleEditable(item, flick)
     }
   }
 
@@ -49,9 +61,13 @@ class App {
     const item = this.template.cloneNode(true)
     item.classList.remove('template')
     item.dataset.id = flick.id
-    item
-      .querySelector('.flickName')
-      .textContent = flick.name
+
+    const nameSpan = item.querySelector('.flickName')
+    nameSpan.textContent = flick.name
+    nameSpan.addEventListener(
+      'keypress',
+      this.saveOnEnter.bind(this, item, flick)
+    )
 
     item
       .querySelector('.remove.button')
@@ -66,7 +82,8 @@ class App {
         'click',
         this.favFlick.bind(this, item, flick)
       )
-      item
+
+    item
       .querySelector('.edit.button')
       .addEventListener(
         'click',
